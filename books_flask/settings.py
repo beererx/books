@@ -1,5 +1,5 @@
-MYSQL_HOST = 'sh-cynosdbmysql-grp-f4owvjcu.sql.tencentcdb.com'
+MYSQL_HOST = '1.117.231.72'
 MYSQL_USER = 'beerer'
-MYSQL_PASS = 'AAaa123456'
+MYSQL_PASS = 'AAaa1234'
 MYSQL_DB = 'books'
-MYSQL_PORT = 22535
+MYSQL_PORT = 3306
