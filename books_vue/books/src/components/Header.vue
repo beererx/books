@@ -10,22 +10,15 @@
             <b-nav-item v-for="item in headData.headers" :key="item.id" :href="item.url" :class="item.url == now_url ? 'active':''">{{ item.text }}</b-nav-item>
             <b-nav-item href="#" disabled>最好看的小说就在此</b-nav-item>
           </b-navbar-nav>
-
-          <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <b-nav-form>
-              <b-form-input size="sm" class="mr-sm-2" placeholder="请输入图书名或作者名"></b-form-input>
-              <b-button size="sm" class="my-2 my-sm-0" type="submit">搜索</b-button>
-            </b-nav-form>
-<!-- 
-            <b-nav-item-dropdown right>
-              
-              <template v-slot:button-content>
-                <em>User</em>
-              </template>
-              <b-dropdown-item href="#">Profile</b-dropdown-item>
-              <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-            </b-nav-item-dropdown> -->
+            <ul  class="navbar-nav ml-auto">
+              <li  class="form-inline">
+                <div class="form-inline">
+                  <input v-model="search.key" type="text" placeholder="请输入图书名或作者名" class="mr-sm-2 form-control form-control-sm" id="__BVID__14">
+                  <button @click="onclickS" type="submit" class="btn my-2 my-sm-0 btn-secondary btn-sm">搜索</button>
+                </div>
+              </li>
+            </ul>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
@@ -34,21 +27,50 @@
 
 <script>
 import {GetCates} from "../apis/read";
-import { reactive,ref } from "@vue/composition-api" //reactive定义对象 ref定义常量
-
+import { reactive,ref,onMounted} from "@vue/composition-api" //reactive定义对象 ref定义常量
+import { stripscript } from "../apis/validate"
 export default {
     name:"Header",
     setup(props,context){
+      const now_url = ref(context.root.$route.path);
+
       const headData = reactive({
         headers:[]
       });
       GetCates().then(res =>{
-        console.log(res);
+        //console.log(res);
         headData.headers = res.data.data;
-        console.log(headData.headers);
+        //console.log(headData.headers);
       });
+
+      onMounted(()=>{
+        
+      })
+
+      const search = reactive({
+        key:''
+      });
+
+      const onclickS = () =>{
+        if (stripscript(search.key) == false || search.key == ''){
+          alert("输入错误，请重试")
+        }
+        else{
+          context.root.$router.push({
+            path: '/search',
+            query:{
+              q:search.key
+            }
+          })
+        }
+        
+      }
+
       return {
-        headData
+        headData,
+        now_url,
+        search,
+        onclickS
       }
     }
 };
