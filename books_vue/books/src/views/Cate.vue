@@ -1,6 +1,7 @@
 <template>
     <div id="HomeCate">
         <Header />
+        <Ads />
         <b-container class="mt-2">
             <div v-if="items.newitems.length > 0">
                 <b-row>
@@ -57,6 +58,7 @@
                 无效分类
             </div>
         </b-container>
+        <AdsFooter />
         <Footer />
     </div>
 </template>
@@ -64,6 +66,8 @@
 <script>
 import Header from "../components/Header.vue"
 import Footer from "../components/Footer.vue"
+import Ads from "../components/Ads.vue";
+import AdsFooter from "../components/AdsFooter.vue";
 import {ref,reactive,onMounted} from "@vue/composition-api"
 import {GetInfoPost} from "../apis/read"
 import dateFormat from "../utils/date"
@@ -72,7 +76,9 @@ export default {
     name:"HomeCate",
     components:{
         Header,
-        Footer
+        Footer,
+        Ads,
+        AdsFooter
     },
     setup(props,context){
         const now_url = ref(context.root.$route.path);

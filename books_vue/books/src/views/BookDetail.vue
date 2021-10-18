@@ -1,6 +1,7 @@
 <template>
     <div id="BookDetail">
         <Header />
+        <Ads />
         <b-container v-if="items.detailsitems.length == 1" class="mt-2">
             <b-row>
                 <b-col class="mt-2">
@@ -55,6 +56,7 @@
         <b-container v-else class="mt-2">
             图书章节不存在
         </b-container>
+        <AdsFooter />
         <Footer />
     </div>
     
@@ -63,6 +65,8 @@
 <script>
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
+import Ads from "../components/Ads.vue";
+import AdsFooter from "../components/AdsFooter.vue";
 import { GetInfoPost } from "../apis/read";
 import { reactive,ref,onMounted } from "@vue/composition-api"
 import { replacebr }   from "../utils/replaceBr"
@@ -70,7 +74,9 @@ export default{
     name:"BookDetail",
     components:{
         Header,
-        Footer
+        Footer,
+        Ads,
+        AdsFooter
     },
     setup(props,context){
         const detailparams= reactive({
@@ -91,8 +97,6 @@ export default{
             items.detailsitems = res.data.data
             GetInfoPost(titleparams).then(res => {
                 document.title = items.detailsitems[0].detail_title+'_'+items.detailsitems[0].book_name+'_'+ res.data.data[0]
-                // document.querySelector('meta[name="keywords"]').setAttribute("content", res.data.data[1]);
-                // document.querySelector('meta[name="description"]').setAttribute("content", res.data.data[2]);
             });
         })
 

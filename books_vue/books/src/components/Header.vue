@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container id="Header">
       <b-navbar toggleable="lg" type="dark" variant="info">
         <b-navbar-brand href="#">小说</b-navbar-brand>
 
@@ -77,5 +77,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+@media (max-width:500px) {
+  #Header{
+    margin-top:37px
+  }
+}
 </style>

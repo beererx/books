@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <Header />
+    <Ads />
     <b-container>
         <div>
           <b-jumbotron header-level="3" header="免责声明" lead="如有侵权，请联系">
@@ -28,7 +29,7 @@
                     <b-card-text>
                       起点中文网创建于2002年5月，是国内最大文学阅读与写作平台之一，是国内领先的原创文学门户网站，隶属于数字内容综合平台——阅文集团旗下, 总部位于上海。
                     </b-card-text>
-                    <b-button href="https://www.qidian.com/" variant="primary">点击前往</b-button>
+                    <b-button href="https://www.qidian.com/" target="_blank" variant="primary">点击前往</b-button>
                   </b-card>
                 </div>
               </b-col>
@@ -49,7 +50,7 @@
                       纵横中文网是隶属于百度和完美世界联合投资运营的纵横文学旗下的原创小说创作平台和数字内容阅读平台，总部位于北京。
                     </b-card-text>
 
-                    <b-button href="http://www.zongheng.com/" variant="primary">点击前往</b-button>
+                    <b-button href="http://www.zongheng.com/" target="_blank" variant="primary">点击前往</b-button>
                   </b-card>
                 </div>
               </b-col>
@@ -70,7 +71,7 @@
                       红袖添香网创办于1999年8月，是全球领先的女性文学数字版权运营商之一，中文女性阅读第一品牌。拥有完善的投稿系统、个人文集系统、媒体联络发表系统及高创作水准的原创书库。
                     </b-card-text>
 
-                    <b-button href="https://www.hongxiu.com/" variant="primary">点击前往</b-button>
+                    <b-button href="https://www.hongxiu.com/" target="_blank" variant="primary">点击前往</b-button>
                   </b-card>
                 </div>
               </b-col>
@@ -92,7 +93,7 @@
                     <b-card-text>
                       飞卢中文网（b.faloo.com）成立于2005年5月，位于北京，是国内一家集正版数字阅读、文学创作、以及IP培育孵化于一体的数字创作阅读网站。
                     </b-card-text>
-                    <b-button href="https://b.faloo.com/" variant="primary">点击前往</b-button>
+                    <b-button href="https://b.faloo.com/" target="_blank" variant="primary">点击前往</b-button>
                   </b-card>
                 </div>
               </b-col>
@@ -113,7 +114,7 @@
                       晋江文学城是中国大陆著名的女性文学网站，创立于2003年8月1日，以耽美、爱情等原创网络小说而著名。主要提供由网友独立创作的小说。日均页面浏览量超过1个亿，日登录固定用户220万。中国网站排名98，世界网站排名1071。
                     </b-card-text>
 
-                    <b-button href="https://www.jjwxc.net/" variant="primary">点击前往</b-button>
+                    <b-button href="https://www.jjwxc.net/" target="_blank" variant="primary">点击前往</b-button>
                   </b-card>
                 </div>
               </b-col>
@@ -134,7 +135,7 @@
                       潇湘书院创建于2001年，是最早发展女生网络原创文学的网站之一，也是最早实行女生原创文学付费的网站。经过多年的辛勤耕耘，潇湘书院已发展成国内最大的女生原创网站之一，用户数量与日俱增，访问流量在国内文学类网站中名列前茅。
                     </b-card-text>
 
-                    <b-button href="https://www.xxsy.net/" variant="primary">点击前往</b-button>
+                    <b-button href="https://www.xxsy.net/" target="_blank" variant="primary">点击前往</b-button>
                   </b-card>
                 </div>
               </b-col>
@@ -142,6 +143,7 @@
           </b-container>
         </div>
     </b-container>
+    <AdsFooter />
     <Footer />
   </div>
 </template>
@@ -149,6 +151,8 @@
 <script>
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
+import Ads from "../components/Ads.vue";
+import AdsFooter from "../components/AdsFooter.vue";
 import {ref,reactive,onMounted} from "@vue/composition-api"
 import {GetInfoPost} from "../apis/read"
 
@@ -156,7 +160,9 @@ export default {
   name: "Home",
   components: {
     Header,
-    Footer
+    Footer,
+    Ads,
+    AdsFooter
   },
   setup(props,context){
 
@@ -168,8 +174,6 @@ export default {
     GetInfoPost(titleparams).then(res =>{
       console.log("acsdvf",res.data.data)
       document.title = res.data.data[0];
-      // document.querySelector('meta[name="keywords"]').setAttribute("content", res.data.data[1]);
-      // document.querySelector('meta[name="description"]').setAttribute("content", res.data.data[2]);
     });
 
     onMounted(()=>{

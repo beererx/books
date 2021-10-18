@@ -1,6 +1,7 @@
 <template>
     <div id="BookIndex">
         <Header />
+        <Ads />
             <b-container v-if="items.indexitems.length == 1" class="mt-2">
                 <b-row>
                     <b-col clos="12" md="4">
@@ -38,6 +39,7 @@
             <b-container v-else class="mt-2">
                 抱歉，您查找的图书不存在
             </b-container>
+        <AdsFooter />
         <Footer />
     </div>
 </template>
@@ -46,6 +48,8 @@
 <script>
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
+import Ads from "../components/Ads.vue";
+import AdsFooter from "../components/AdsFooter.vue";
 import {GetInfoPost} from "../apis/read";
 import {reactive,ref,onMounted} from "@vue/composition-api"
 import dateFormat from "../utils/date"
@@ -53,7 +57,9 @@ export default{
     name:"BookIndex",
     components:{
         Header,
-        Footer
+        Footer,
+        Ads,
+        AdsFooter
     },
     setup(props,context){
         const now_url = ref(context.root.$route.path);
@@ -92,8 +98,6 @@ export default{
             GetInfoPost(titleparams).then(res => {
                 console.log(items.indexitems[0].book_name)
                 document.title = items.indexitems[0].book_name +'_'+ res.data.data[0]
-                // document.querySelector('meta[name="keywords"]').setAttribute("content", res.data.data[1]);
-                // document.querySelector('meta[name="description"]').setAttribute("content", res.data.data[2]);
             });
         });
 

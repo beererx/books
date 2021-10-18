@@ -184,6 +184,7 @@ def get_cates_infos(book_cate):
 def get_book_infos_by_id(book_id):
     if request.method == 'POST':
         get_data = json.loads(request.get_data(as_text=True))
+        print(get_data)
         key = get_data['key']
         secretKey = get_data['secretKey']
         secret_result = get_secret_key(secretKey)
@@ -263,7 +264,7 @@ def get_book_infos_by_id(book_id):
         return jsonify(resData)
 
 #获取图书详情页接口
-@app.route("/book/<int:book_id>/<int:sort_id>",methods=['POST'])
+@app.route("/book/<int:book_id>/<int:sort_id>", methods=['POST'])
 def get_book_datail_infos(book_id,sort_id):
     if request.method == 'POST':
         get_data = json.loads(request.get_data(as_text=True))
