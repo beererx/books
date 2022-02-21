@@ -19,7 +19,6 @@
                             </p>
                             <hr class="my-4">
                             <b-button variant="primary" :href="'/book/'+items.indexitems[0].book_id+'/'+ items.allcapitems[0].sort_id">开始阅读</b-button>
-                            <!-- <b-button variant="success" href="#" style="float:right">加入收藏</b-button> -->
                         </b-jumbotron>    
                     </b-col>
                 </b-row>

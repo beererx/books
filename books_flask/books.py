@@ -1,6 +1,8 @@
 from pymysql import connect
 from pymysql.cursors import DictCursor
-from settings import MYSQL_HOST,MYSQL_USER,MYSQL_PASS,MYSQL_DB,MYSQL_PORT
+from settings import MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB, MYSQL_PORT
+
+
 class Book(object):
     def __init__(self):
         self.conn = connect(
@@ -84,7 +86,7 @@ class Book(object):
 
     def search_books_by_key(self, key):
         data = []
-        sql = "SELECT * FROM book_infos WHERE book_name = '{}' OR book_author ='{}'".format(key, key)
+        sql = "SELECT * FROM book_infos WHERE book_name  LIKE '%%{}%%' OR book_author LIKE '%%{}%%'".format(key, key)
         self.cursor.execute(sql)
         for temp in self.cursor.fetchall():
             data.append(temp)

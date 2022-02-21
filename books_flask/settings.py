@@ -1,7 +1,7 @@
 MYSQL_HOST = '1.117.231.72'
 MYSQL_USER = 'beerer'
 MYSQL_PASS = 'QWEqwe123'
-MYSQL_DB = 'books'
+MYSQL_DB = 'book'
 MYSQL_PORT = 3306
 
 BOOK_LIST = [

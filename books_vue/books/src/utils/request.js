@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import router from "../router";
 // console.log("in request.js", process.env.NODE_ENV);
 
 // console.log("in request.js", process.env.VUE_APP_URL);
@@ -18,24 +18,30 @@ const service = axios.create({
 service.interceptors.request.use(
   function(config) {
     console.log("request.js: request:  config===== ", config);
+    const token = localStorage.getItem('token')
+    if(token) config.headers.Authorization = token;
     return config;
   },
   function(error) {
     return Promise.reject(error);
   }
 );
-
+//'Bearer '+
 // 响应拦截器： 服务器返回数据后处理
 service.interceptors.response.use(
   function(response) {
     console.log("request.js: response = ", response);
     let data = response.data;
-    if (data.resCode != 0) {
+    if (data.resCode != 0 && data.resCode != 777) {
       // 服务器有响应，但是并不是想要的数据
       // Message.error(data.message);
       console.log("服务器有响应，但是并不是想要的数据");
       return Promise.reject(data.resCode);
-    } else {
+    } 
+    else if(data.resCode == 777){
+      router.push({ name: 'Asignin'})
+    }
+    else {
       // 服务器有响应，并且数据正确
       console.log("服务器有响应，并且数据正确");
       console.log("request.js: data.data = ", data.data);

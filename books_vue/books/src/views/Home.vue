@@ -172,7 +172,6 @@ export default {
     });
 
     GetInfoPost(titleparams).then(res =>{
-      console.log("acsdvf",res.data.data)
       document.title = res.data.data[0];
     });
 

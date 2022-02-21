@@ -20,13 +20,15 @@
               </li>
             </ul>
           </b-navbar-nav>
+          <b-button pill variant="success" size="sm" :href="'login/in'">登录</b-button>
         </b-collapse>
+          
       </b-navbar>
     </b-container>
 </template>
 
 <script>
-import {GetCates} from "../apis/read";
+import { GetCates} from "../apis/read";
 import { reactive,ref,onMounted} from "@vue/composition-api" //reactive定义对象 ref定义常量
 import { stripscript } from "../apis/validate"
 export default {

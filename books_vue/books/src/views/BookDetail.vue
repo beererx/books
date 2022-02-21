@@ -30,6 +30,16 @@
                     <a :href="'/book/'+items.detailsitems[0].book_id+'/'+items.detailsitems[0].next_sort_id">下一页</a>
                 </b-col>
             </b-row>
+            <div class="mt-3">
+                <b-button-group>
+                    <b-button variant="primary" @click="init" v-trigger>字体</b-button>
+                    <b-button variant="success" @click="fbig">大</b-button>
+                    <b-button variant="info" @click="fmiddle">中</b-button>
+                    <b-button variant="warning" @click="fsmall">小</b-button>
+                    <b-button variant="light" @click="lighton">开灯</b-button>
+                    <b-button variant="dark" @click="lightoff">关灯</b-button>
+                </b-button-group>
+            </div>
             <b-row>
                 <b-col>
                     <p id="content_text" v-html="replacebr(items.detailsitems[0].detail_content)"></p>
@@ -108,7 +118,53 @@ export default{
             items,
             replacebr
         }
-    }
+    },
+    methods:{
+        fbig(){
+            var fsize = document.getElementById("content_text");
+            fsize.style.fontSize = "30px";
+            document.cookie='fontSize = "30px"';
+        },
+        fmiddle(){
+            var fsize = document.getElementById("content_text");
+            fsize.style.fontSize = "25px";
+            document.cookie='fontSize = "25px"';
+        },
+        fsmall(){
+            var fsize = document.getElementById("content_text");
+            fsize.style.fontSize = "17px";
+            document.cookie='fontSize = "17px"';
+        },
+        lighton(){
+            var light = document.getElementById("BookDetail");
+            light.style.backgroundColor = "#E9FAFF";
+        },
+        lightoff(){
+            var light = document.getElementById("BookDetail");
+            light.style.backgroundColor = "#617379";
+        },
+        init(){
+            var strcookie = document.cookie;
+            var arrcookie = strcookie.split("; ");
+            for ( var i = 0; i < arrcookie.length; i++) {
+                var arr = arrcookie[i].split("=");
+                if (arr[0] == "fontSize"){
+                    var num = arr[1].replace(/[^\d]/g,' ');
+                    num = parseInt(num)
+                    var fsize = document.getElementById("content_text");
+                    fsize.style.fontSize = num + "px";
+                }
+            }
+        }
+    },
+    directives:{
+        trigger:{
+            inserted(el,binging){
+                el.click()
+      }
+   }
+ }
+    
 }
 </script>
 
@@ -125,4 +181,5 @@ export default{
     font-size: 17px;
     line-height: 35px;
 }
+
 </style>
