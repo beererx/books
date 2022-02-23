@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.14.0",
+    "echarts": "^4.9.0",
     "element-ui": "^2.15.6",
     "jquery": "^3.6.0",
     "jsencrypt": "^3.2.0",

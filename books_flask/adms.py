@@ -160,11 +160,28 @@ class Adms(object):
             data.append(temp)
         return data
 
+    def get_book_cate_num(self):
+        sql = "SELECT book_cate,COUNT(book_cate) AS num FROM book_infos GROUP BY book_cate"
+        self.cursor.execute(sql)
+        data = []
+        for temp in self.cursor.fetchall():
+            data.append(temp)
+        data[0]['book_cate'] = '都市'
+        data[1]['book_cate'] = '科幻'
+        data[2]['book_cate'] = '历史'
+        data[3]['book_cate'] = '其他'
+        data[4]['book_cate'] = '全本'
+        data[5]['book_cate'] = '网游'
+        data[6]['book_cate'] = '修真'
+        data[7]['book_cate'] = '玄幻'
+        data[8]['book_cate'] = '言情'
+        return data
+
 
 if __name__ == '__main__':
     adm = Adms()
     #data = user.sign_in("xiaom", "1234567323")
-    #data = adm.get_name_by_adm(3)
-    data = adm.sign_in_by_adm("rr1", "11111")
+    data = adm.get_book_cate_num()
+    #data = adm.sign_in_by_adm("rr1", "11111")
     #data = adm.create_all_data_for_books_details(8888,88,'xx','aaa')
     print(data)

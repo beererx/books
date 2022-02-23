@@ -19,6 +19,17 @@ export function GetInfoPost(postparams){
     })
 }
 
+export function GetBookCateNum(postparams){
+    return service.request({
+        method:"post",
+        url:"/adm/bookcate_num",
+        data:{
+            key:postparams.key,
+            secretKey: rsaEncrypt(new Date().getTime()+':'+'www.beerer.asia') //加密用
+        }
+    })
+}
+
 export function LogininInfoPost(postparams){
     return service.request({
         method:"post",

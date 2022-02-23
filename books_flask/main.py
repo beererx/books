@@ -602,7 +602,7 @@ def login_in():
 
 
 #用户个人信息
-@app.route('/user/<name>',methods=['POST'])
+@app.route('/user/<name>', methods=['POST'])
 def get_user_infos(name):
     if request.method == 'POST':
         get_data = json.loads(request.get_data(as_text=True))
@@ -1421,6 +1421,74 @@ def change_password_by_adm():
         }
         return jsonify(resData)
 
+#管理员用户列表接口
+@app.route('/adm/bookcate_num', methods=['POST'])
+def get_book_cate_num():
+    if request.method == 'POST':
+        try:
+            token = request.headers["Authorization"]
+            jtoken = verify_token(token)
+            if(jtoken == None):
+                resData = {
+                    "resCode": 777,
+                    "data": [],
+                    "message": '参数token错误'
+                }
+                return jsonify(resData)
+        except Exception:
+            resData = {
+                "resCode": 777,
+                "data": [],
+                "message": '缺少参数token'
+            }
+            return jsonify(resData)
+        get_data = json.loads(request.get_data(as_text=True))
+        key = get_data['key']
+        secretKey = get_data['secretKey']
+        secret_result = get_secret_key(secretKey)
+        if secret_result['request_time'] == '':
+            resData = {
+                "resCode": 101,
+                "data": [],
+                "message": '超時'
+            }
+            return jsonify(resData)
+        if (int(time.time() * 1000) - int(secret_result['request_time']) > 300000):
+            resData = {
+                "resCode": 101,
+                "data": [],
+                "message": '超時'
+            }
+            return jsonify(resData)
+        if secret_result['request_url'] not in REQUEST_LISTS:
+            resData = {
+                "resCode": 102,
+                "data": [],
+                "message": '参数不存在'
+            }
+            return jsonify(resData)
+        if is_string_validate(key):
+            resData = {
+                "resCode": 2,
+                "data": [],
+                "message": '参数错误'
+            }
+            return jsonify(resData)
+        adm = Adms()
+        data = adm.get_book_cate_num()
+        resData = {
+            "resCode": 0,
+            "data": data,
+            "message": '各类型小说数量'
+        }
+        return jsonify(resData)
+    else:
+        resData = {
+            "resCode": 1,
+            "data": [],
+            "message": '请求方法错误'
+        }
+        return jsonify(resData)
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8088, debug=True)

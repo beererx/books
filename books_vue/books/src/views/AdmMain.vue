@@ -39,6 +39,9 @@
                             >{{items.detailsitems[0].administrators}}位</b-carousel-slide>
                         </b-carousel>
                     </div>
+                    <div>
+                        <BookCateNum />
+                    </div>
                 </b-col>
                 <b-col cols="12" md="2">
                 </b-col>
@@ -54,13 +57,13 @@ import Footer from "../components/Footer.vue"
 import Ads from "../components/Ads.vue";
 import AdsFooter from "../components/AdsFooter.vue";
 import Management from "../components/Management.vue";
+import BookCateNum from "../components/BookCateNum.vue";
 import {ref,reactive,onMounted} from "@vue/composition-api"
 import {GetInfoPost,LogininInfoPost} from "../apis/read"
 import dateFormat from "../utils/date"
 import store from '@/store'
 import Vue from 'vue'
-
-
+// import * as echarts from 'echarts'
 export default {
     name:"HomeCate",
     components:{
@@ -68,7 +71,8 @@ export default {
         Footer,
         Ads,
         AdsFooter,
-        Management
+        Management,
+        BookCateNum
     },
     setup(props,context){
          const detailparams= reactive({
@@ -84,17 +88,12 @@ export default {
             items.detailsitems = res.data.data
         })
         onMounted(()=>{
-            
         });
         return{
             items
       }    
         
     }
-    
-
-    
-    
 }
 </script>
 

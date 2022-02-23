@@ -146,21 +146,21 @@ export default {
 
             LogininInfoPost(detailparams).then(res =>{
                 if(res.data.data == "ok"){
-                    alert("注册成功，请登录!");
+                    alert("注册成功,请登录!");
                 }
                 else if(res.data.data == "no_name"){
-                    alert("用户名已被占用，请重试!");
+                    alert("用户名已被占用,请重试!");
                     this.form.name = ''
                 }
                 else if(res.data.data == "no_email"){
-                    alert("邮箱未验证，请先进行邮箱验证!");
+                    alert("邮箱未验证,请先进行邮箱验证!");
                 }
                 else if(res.data.data == "no_code"){
-                    alert("验证码错误或超时，请重新输入验证码!");
+                    alert("验证码错误或超时,请重新输入验证码!");
                     this.form.passcode = ''
                 }
                 else if(res.data.data == "short_password"){
-                    alert("密码至少需要8位，请重新设置密码!");
+                    alert("密码至少需要8位,请重新设置密码!");
                     this.form.password = ''
                 }
             })
@@ -179,10 +179,10 @@ export default {
         console.log("dqdww",detailparams)
             LogininInfoPost(detailparams).then(res =>{
                 if(res.data.data == "no_user"){
-                    alert("用户不存在，请重试!");
+                    alert("用户不存在,请重试!");
                 }
                 else if(res.data.data == "error_password"){
-                    alert("密码错误，请重试!");
+                    alert("密码错误,请重试!");
                 }
                 else if(res.data.data == "ok"){
                     alert("登录成功!");
@@ -215,7 +215,7 @@ export default {
             detailparams.key = this.form.email;
             GetInfoPost(detailparams).then(res =>{
                 if(res.data.data == "no"){
-                    alert("输入的邮箱地址有误，请重新输入！")
+                    alert("输入的邮箱地址有误,请重新输入！")
                     this.form.email = ''
                 }
         
