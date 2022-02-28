@@ -1,13 +1,12 @@
 <template>
     <div id="Login">
         <Header />
-        <Ads />
         <b-container class="mt-2">
             <b-row>
                 <b-col cols="12" md="3">
                 </b-col>
                 <b-col cols="12" md="7">
-                    <b-alert show variant="primary">管理员登录</b-alert>
+                    <b-alert show variant="primary">管理员登录(账户:root 密码:123456)</b-alert>
                     <b-form @submit="onSubmit2" @reset="onReset"  v-if="show" id="sign_in" @keyup.enter.native="onSubmit2">
                         <b-form-group id="input-group-1" label="用户名:" label-for="input-1">
                             <b-form-input
@@ -35,7 +34,6 @@
                 </b-col>
             </b-row>
         </b-container>
-        <AdsFooter />
         <Footer />
     </div>
 </template>

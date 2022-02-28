@@ -91,3 +91,17 @@ class Book(object):
         for temp in self.cursor.fetchall():
             data.append(temp)
         return data
+
+    def get_books_by_random(self):
+        sql = "SELECT id,book_id,book_name,image_urls,book_author,book_desc,book_status FROM book_infos ORDER BY RAND() LIMIT 30"
+        self.cursor.execute(sql)
+        data = []
+        for temp in self.cursor.fetchall():
+            data.append(temp)
+        return data
+
+
+if __name__ == '__main__':
+    book = Book()
+    data = book.get_books_by_random()
+    print(data)

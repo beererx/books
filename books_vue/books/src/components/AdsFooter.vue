@@ -4,7 +4,7 @@
             <a href="https://curl.qcloud.com/TS1bu0QZ" target="_blank">
                 <img style="width:100%" src="../assets/AD.jpg" alt="'https://curl.qcloud.com/TS1bu0QZ'" />
             </a>
-            </div>
+        </div>
     </b-container>
 </template>
 

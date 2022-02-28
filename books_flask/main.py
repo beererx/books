@@ -100,16 +100,17 @@ def get_books_cates():
     resData = {
         "resCode": 0,
         "data": [
-            {"id":0, "text": '首页', "url":'/'},
-            {"id":1, "text": '玄幻', "url":'/xuanhuan'},
-            {"id":2, "text": '修真', "url":'/xiuzhen'},
-            {"id":3, "text": '都市', "url":'/dushi'},
-            {"id":4, "text": '历史', "url":'/lishi'},
-            {"id":5, "text": '网游', "url":'/wangyou'},
-            {"id":6, "text": '科幻', "url":'/kehuan'},
-            {"id":7, "text": '言情', "url":'/yanqing'},
-            {"id":8, "text": '其他', "url":'/qita'},
-            {"id":9, "text": '完本', "url":'/quanben'},
+            {"id": 0, "text": '首页', "url": '/'},
+            {"id": 1, "text": '玄幻', "url": '/xuanhuan'},
+            {"id": 2, "text": '修真', "url": '/xiuzhen'},
+            {"id": 3, "text": '都市', "url": '/dushi'},
+            {"id": 4, "text": '历史', "url": '/lishi'},
+            {"id": 5, "text": '网游', "url": '/wangyou'},
+            {"id": 6, "text": '科幻', "url": '/kehuan'},
+            {"id": 7, "text": '言情', "url": '/yanqing'},
+            {"id": 8, "text": '其他', "url": '/qita'},
+            {"id": 9, "text": '完本', "url": '/quanben'},
+            {"id": 10, "text": '淘好文', "url": '/book/hunting'},
         ],
         "message": '头部'
     }
@@ -181,6 +182,58 @@ def get_cates_infos(book_cate):
         else:
             return 404
 
+    else:
+        resData = {
+            "resCode": 1,
+            "data": [],
+            "message": '请求方法错误'
+        }
+        return jsonify(resData)
+
+#淘好文信息
+@app.route('/book/hunting', methods=['POST'])
+def get_books_by_random():
+    if request.method == 'POST':
+        get_data = json.loads(request.get_data(as_text=True))
+        key = get_data['key']
+        secretKey = get_data['secretKey']
+        secret_result = get_secret_key(secretKey)
+        if secret_result['request_time'] == '':
+            resData = {
+                "resCode": 101,
+                "data": [],
+                "message": '超時'
+            }
+            return jsonify(resData)
+        if (int(time.time() * 1000) - int(secret_result['request_time']) > 300000):
+            resData = {
+                "resCode": 101,
+                "data": [],
+                "message": '超時'
+            }
+            return jsonify(resData)
+        if secret_result['request_url'] not in REQUEST_LISTS:
+            resData = {
+                "resCode": 102,
+                "data": [],
+                "message": '参数不存在'
+            }
+            return jsonify(resData)
+        if is_string_validate(key):
+            resData = {
+                "resCode": 2,
+                "data": [],
+                "message": '参数错误'
+            }
+            return jsonify(resData)
+        book = Book()
+        data = book.get_books_by_random()
+        resData = {
+            "resCode": 0,
+            "data": data,
+            "message": '随机小说'
+        }
+        return jsonify(resData)
     else:
         resData = {
             "resCode": 1,

@@ -1,10 +1,10 @@
 <template>
 <b-container>
     <div id="main-top-ad">
-        <a target="_blank" href="https://curl.qcloud.com/TS1bu0QZ"><img id="ad_top" style="width:100%" src="../assets/AD.jpg"  alt="'https://curl.qcloud.com/TS1bu0QZ'"/></a>
+        <a target="_blank" href="https://curl.qcloud.com/TS1bu0QZ"><img id="ad_top" style="width:100%" src="../assets/AD_tinypng.jpg"  alt="'https://curl.qcloud.com/TS1bu0QZ'"/></a>
     </div>
     <div id="main-left-ad">
-        <a target="_blank" href="https://curl.qcloud.com/TS1bu0QZ"><img src="../assets/AD2.jpg"  alt="'https://curl.qcloud.com/TS1bu0QZ'"/></a>
+        <a target="_blank" href="https://curl.qcloud.com/TS1bu0QZ"><img src="../assets/AD2_webp.webp"  alt="'https://curl.qcloud.com/TS1bu0QZ'"/></a>
     </div>
     <div id="main-right-ad">
         <a target="_blank" href="https://curl.qcloud.com/TS1bu0QZ"><img src="../assets/AD2.jpg"  alt="'https://curl.qcloud.com/TS1bu0QZ'"/></a>

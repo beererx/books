@@ -114,8 +114,6 @@ export default {
 
             GetInfoPost(titlePramas).then(res => {
                 document.title = res.data.data[0];
-                // document.querySelector('meta[name="keywords"]').setAttribute("content", res.data.data[1]);
-                // document.querySelector('meta[name="description"]').setAttribute("content", res.data.data[2]);
             });
         });
         return{

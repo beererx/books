@@ -20,7 +20,7 @@
               </li>
             </ul>
           </b-navbar-nav>
-          <b-button pill variant="success" size="sm" :href="'login/in'">登录</b-button>
+          <b-button pill variant="success" size="sm" :href="'/login/in'">登录</b-button>
         </b-collapse>
           
       </b-navbar>

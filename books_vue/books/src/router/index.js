@@ -1,20 +1,37 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Cate from "../views/Cate.vue";
-import BookIndex from "../views/BookIndex";
-import BookDetail from "../views/BookDetail";
-import BookSearch from "../views/BookSearch";
-import Login from "../views/Login";
-import User from "../views/User";
-import Asignin from "../views/Asignin";
-import AdmMain from "../views/AdmMain";
-import AdmBookMana from "../views/AdmBookMana";
-import AdmPassChage from "../views/AdmPassChage";
-import AdmBookDetailMana from "../views/AdmBookDetailMana";
-import AdmInsertBook from "../views/AdmInsertBook";
-import AdmInsertBookDatail from "../views/AdmInsertBookDatail";
-import AdmUserColl from "../views/AdmUserColl";
+//import Home from "../views/Home.vue";
+const Home = () =>import('../views/Home.vue');
+//import Cate from "../views/Cate.vue";
+const Cate = () =>import('../views/Cate.vue');
+//import BookIndex from "../views/BookIndex";
+const BookIndex = () =>import('../views/BookIndex.vue');
+//import BookHunting from "../views/BookHunting";
+const BookHunting = () =>import('../views/BookHunting.vue');
+//import BookDetail from "../views/BookDetail";
+const BookDetail = () =>import('../views/BookDetail.vue');
+//import BookSearch from "../views/BookSearch";
+const BookSearch = () =>import('../views/BookSearch.vue');
+//import Login from "../views/Login";
+const Login = () =>import('../views/Login.vue');
+//import User from "../views/User";
+const User = () =>import('../views/User.vue');
+//import Asignin from "../views/Asignin";
+const Asignin = () =>import('../views/Asignin.vue');
+//import AdmMain from "../views/AdmMain";
+const AdmMain = () =>import('../views/AdmMain.vue');
+//import AdmBookMana from "../views/AdmBookMana";
+const AdmBookMana = () =>import('../views/AdmBookMana.vue');
+//import AdmPassChage from "../views/AdmPassChage";
+const AdmPassChage = () =>import('../views/AdmPassChage.vue');
+//import AdmBookDetailMana from "../views/AdmBookDetailMana";
+const AdmBookDetailMana = () =>import('../views/AdmBookDetailMana.vue');
+//import AdmInsertBook from "../views/AdmInsertBook";
+const AdmInsertBook = () =>import('../views/AdmInsertBook.vue');
+//import AdmInsertBookDatail from "../views/AdmInsertBookDatail";
+const AdmInsertBookDatail = () =>import('../views/AdmInsertBookDatail.vue');
+//import AdmUserColl from "../views/AdmUserColl";
+const AdmUserColl = () =>import('../views/AdmUserColl.vue');
 Vue.use(VueRouter);
 
 const routes = [
@@ -32,6 +49,11 @@ const routes = [
     path: "/:cate_id",
     name: "Cate",
     component: Cate
+  },
+  { // 淘小说页面
+    path: "/book/hunting",
+    name: "BookHunting",
+    component: BookHunting
   },
   {//图书介绍页
     path: "/book/:book_id",

@@ -17,7 +17,7 @@ const service = axios.create({
 // 请求拦截器： 在浏览器发送请求之前的处理; 用处：对真的发送请求之前可以判断，比如是否合法，是否符合请求参数的要求
 service.interceptors.request.use(
   function(config) {
-    console.log("request.js: request:  config===== ", config);
+    //console.log("request.js: request:  config===== ", config);
     const token = localStorage.getItem('token')
     if(token) config.headers.Authorization = token;
     return config;
@@ -30,12 +30,12 @@ service.interceptors.request.use(
 // 响应拦截器： 服务器返回数据后处理
 service.interceptors.response.use(
   function(response) {
-    console.log("request.js: response = ", response);
+    //console.log("request.js: response = ", response);
     let data = response.data;
     if (data.resCode != 0 && data.resCode != 777) {
       // 服务器有响应，但是并不是想要的数据
       // Message.error(data.message);
-      console.log("服务器有响应，但是并不是想要的数据");
+      //console.log("服务器有响应，但是并不是想要的数据");
       return Promise.reject(data.resCode);
     } 
     else if(data.resCode == 777){
@@ -43,8 +43,8 @@ service.interceptors.response.use(
     }
     else {
       // 服务器有响应，并且数据正确
-      console.log("服务器有响应，并且数据正确");
-      console.log("request.js: data.data = ", data.data);
+      //console.log("服务器有响应，并且数据正确");
+      //console.log("request.js: data.data = ", data.data);
       return response;
     }
 
